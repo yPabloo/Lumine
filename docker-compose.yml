@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      DATABASE_PATH: /data/lumine.db
+      ADMIN_EMAILS: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
+    volumes:
+      - lumine_data:/data
+
+  proxy:
+    build:
+      context: ./docker/nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+    environment:
+      ADMIN_USER: ${ADMIN_USER:?Defina ADMIN_USER no arquivo .env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Defina ADMIN_PASSWORD no arquivo .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
+
+volumes:
+  lumine_data:

@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+.git
+.github
+.wrangler
+.sites-runtime
+data
+*.zip
+.env
+.env.*
+!.env.docker.example
