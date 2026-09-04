@@ -1,13 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen, Brain, Languages, MapPin, MessageCircle, Music2, Palette, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, Languages, MapPin, MessageCircle, Music2, Palette, Sparkles, History, Target } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { activities, festival, groups, lumine, support, values, workshops } from "@/lib/site-data";
+
 import {
   MediaCarousel,
   type MediaItem,
 } from "@/components/media-carousel";
+
+import {
+  StructureCarousel,
+  type StructureImage,
+} from "@/components/structure-carousel";
 
 const institutionalMedia: MediaItem[] = [
   {
@@ -15,6 +21,21 @@ const institutionalMedia: MediaItem[] = [
     src: "/lumine-media/video-01.mp4",
     title: "Momentos de uma atividade no Lumine",
     poster: "/lumine-media/capa-video-01.jpg",
+  },
+];
+
+const structureImages: StructureImage[] = [
+  {
+    src: "/lumine-structure/estrutura-01.jpeg",
+    alt: "Ambiente interno do Lumine",
+  },
+  {
+    src: "/lumine-structure/estrutura-02.jpeg",
+    alt: "Espaço preparado para atividades infantis",
+  },
+  {
+    src: "/lumine-structure/estrutura-03.jpeg",
+    alt: "Área de aprendizagem e brincadeiras do Lumine",
   },
 ];
 
@@ -43,6 +64,60 @@ export default function Home() {
             </div>
             <div className="hero-art" aria-label="Fotos e vídeos do Lumine">
               <MediaCarousel items={institutionalMedia} />
+            </div>
+          </div>
+        </section>
+
+        <section className="section about-section" id="sobre">
+          <div className="shell">
+            <div className="section-heading section-heading--about">
+              <span className="kicker">Conheça o Lumine</span>
+              <h2>Nossa História e Missão</h2>
+
+              <p>
+                Um espaço pensado para acompanhar cada etapa da infância com
+                acolhimento, intencionalidade e respeito.
+              </p>
+            </div>
+
+            <div className="about-story-panel">
+              <article className="about-story-block">
+                <div className="about-story-icon about-story-icon--pink">
+                  <History aria-hidden="true" />
+                </div>
+
+                <div>
+                  <span className="about-story-label">Nossa História</span>
+
+                  <h3>Um espaço criado para acolher e desenvolver.</h3>
+
+                  <p>
+                    O Lumine nasceu com o propósito de oferecer às crianças
+                    um ambiente acolhedor, seguro e repleto de experiências
+                    que valorizam as descobertas, os vínculos e o prazer em
+                    aprender.
+                  </p>
+                </div>
+              </article>
+
+              <article className="about-story-block">
+                <div className="about-story-icon about-story-icon--yellow">
+                  <Target aria-hidden="true" />
+                </div>
+
+                <div>
+                  <span className="about-story-label">Nossa Missão</span>
+
+                  <h3>Contribuir para o desenvolvimento integral da criança.</h3>
+
+                  <p>
+                    Nossa missão é respeitar a individualidade e o ritmo de
+                    cada criança, promovendo autonomia, criatividade,
+                    confiança e aprendizagens significativas em parceria com
+                    as famílias.
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -129,6 +204,12 @@ export default function Home() {
                 <ul>{support.map((item) => <li key={item}>{item}</li>)}</ul>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section className="section structure-section" id="estrutura">
+          <div className="shell">
+            <StructureCarousel items={structureImages} />
           </div>
         </section>
 
