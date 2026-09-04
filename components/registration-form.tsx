@@ -13,6 +13,7 @@ type FormState = {
   childName: string;
   childBirthDate: string;
   guardianName: string;
+  guardianBirthDate: string;
   guardianCpf: string;
   guardianEmail: string;
   guardianPhone: string;
@@ -26,6 +27,7 @@ const initialState: FormState = {
   childName: "",
   childBirthDate: "",
   guardianName: "",
+  guardianBirthDate: "",
   guardianCpf: "",
   guardianEmail: "",
   guardianPhone: "",
@@ -111,6 +113,7 @@ export function RegistrationForm() {
         <div className="form-section-heading"><span>2</span><div><h2>Responsável legal</h2><p>Esses dados serão usados para confirmação e consulta.</p></div></div>
         <div className="form-grid">
           <div className="field field--full"><Label htmlFor="guardianName">Nome completo</Label><Input id="guardianName" autoComplete="name" required value={form.guardianName} onChange={(e) => setField("guardianName", e.target.value)} /></div>
+          <div className="field"><Label htmlFor="guardianBirthDate">Data de nascimento</Label><Input id="guardianBirthDate" type="date" autoComplete="bday" required value={form.guardianBirthDate} onChange={(e) => setField("guardianBirthDate", e.target.value)} /></div>
           <div className="field"><Label htmlFor="guardianCpf">CPF</Label><Input id="guardianCpf" inputMode="numeric" autoComplete="off" required placeholder="000.000.000-00" value={form.guardianCpf} onChange={(e) => setField("guardianCpf", formatCpf(e.target.value))} /></div>
           <div className="field"><Label htmlFor="guardianPhone">Celular / WhatsApp</Label><Input id="guardianPhone" type="tel" inputMode="tel" autoComplete="tel" required placeholder="(79) 99999-9999" value={form.guardianPhone} onChange={(e) => setField("guardianPhone", formatPhone(e.target.value))} /></div>
           <div className="field field--full"><Label htmlFor="guardianEmail">E-mail</Label><Input id="guardianEmail" type="email" autoComplete="email" required value={form.guardianEmail} onChange={(e) => setField("guardianEmail", e.target.value)} /></div>

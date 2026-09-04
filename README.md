@@ -2,7 +2,7 @@
 
 Site institucional do Lumine e sistema de inscrições do Festival Lumine de
 Artes. O projeto inclui página pública, formulário de inscrição, consulta por
-código e CPF, FAQ, termos, painel administrativo, exportação CSV e banco
+CPF, FAQ, termos, login administrativo, exportação CSV e banco
 persistente.
 
 ## Tecnologias
@@ -11,7 +11,7 @@ persistente.
 - TypeScript
 - SQLite nativo do Node.js
 - Docker e Docker Compose
-- Nginx com autenticação HTTP para `/admin`
+- Sessão administrativa assinada e protegida por cookie HTTP-only
 
 ## Desenvolvimento no VS Code
 

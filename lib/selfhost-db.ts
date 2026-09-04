@@ -8,6 +8,7 @@ export type RegistrationRow = {
   childName: string;
   childBirthDate: string;
   guardianName: string;
+  guardianBirthDate: string;
   guardianCpf: string;
   guardianEmail: string;
   guardianPhone: string;
@@ -31,6 +32,7 @@ const schema = `
     child_name TEXT NOT NULL,
     child_birth_date TEXT NOT NULL,
     guardian_name TEXT NOT NULL,
+    guardian_birth_date TEXT NOT NULL DEFAULT '',
     guardian_cpf TEXT NOT NULL,
     guardian_email TEXT NOT NULL,
     guardian_phone TEXT NOT NULL,
@@ -68,6 +70,29 @@ function getDatabase() {
   connection.exec("PRAGMA journal_mode = WAL");
   connection.exec(schema);
 
+  const columns = connection.prepare("PRAGMA table_info(registrations)").all() as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === "guardian_birth_date")) {
+    connection.exec("ALTER TABLE registrations ADD COLUMN guardian_birth_date TEXT NOT NULL DEFAULT ''");
+  }
+
+  const legacyCodes = connection.prepare(`
+    SELECT COUNT(*) AS value
+    FROM registrations
+    WHERE code != ('FLA-' || printf('%04d', id))
+  `).get() as { value: number };
+  if (legacyCodes.value > 0) {
+    connection.exec("BEGIN IMMEDIATE");
+    try {
+      connection.exec("UPDATE registrations SET code = '__FLA_MIGRATION__' || id");
+      connection.exec("UPDATE registrations SET code = 'FLA-' || printf('%04d', id)");
+      connection.exec("COMMIT");
+    } catch (error) {
+      connection.exec("ROLLBACK");
+      throw error;
+    }
+  }
+  connection.exec("PRAGMA optimize");
+
   database = connection;
   return connection;
 }
@@ -79,6 +104,7 @@ const registrationSelect = `
     child_name AS childName,
     child_birth_date AS childBirthDate,
     guardian_name AS guardianName,
+    guardian_birth_date AS guardianBirthDate,
     guardian_cpf AS guardianCpf,
     guardian_email AS guardianEmail,
     guardian_phone AS guardianPhone,
@@ -94,35 +120,53 @@ const registrationSelect = `
 `;
 
 export function createRegistration(values: {
-  code: string;
   childName: string;
   childBirthDate: string;
   guardianName: string;
+  guardianBirthDate: string;
   guardianCpf: string;
   guardianEmail: string;
   guardianPhone: string;
   notes: string;
 }) {
-  getDatabase().prepare(`
-    INSERT INTO registrations (
-      code, child_name, child_birth_date, guardian_name, guardian_cpf,
-      guardian_email, guardian_phone, notes, consent_terms, consent_data,
-      guardian_declaration
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 1)
-  `).run(
-    values.code,
-    values.childName,
-    values.childBirthDate,
-    values.guardianName,
-    values.guardianCpf,
-    values.guardianEmail,
-    values.guardianPhone,
-    values.notes,
-  );
+  const connection = getDatabase();
+  connection.exec("BEGIN IMMEDIATE");
+  try {
+    const sequence = connection.prepare(`
+      SELECT COALESCE(
+        (SELECT seq FROM sqlite_sequence WHERE name = 'registrations'),
+        0
+      ) + 1 AS value
+    `).get() as { value: number };
+    const code = `FLA-${String(sequence.value).padStart(4, "0")}`;
+
+    connection.prepare(`
+      INSERT INTO registrations (
+        code, child_name, child_birth_date, guardian_name, guardian_birth_date,
+        guardian_cpf, guardian_email, guardian_phone, notes, consent_terms,
+        consent_data, guardian_declaration
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, 1)
+    `).run(
+      code,
+      values.childName,
+      values.childBirthDate,
+      values.guardianName,
+      values.guardianBirthDate,
+      values.guardianCpf,
+      values.guardianEmail,
+      values.guardianPhone,
+      values.notes,
+    );
+    connection.exec("COMMIT");
+    return code;
+  } catch (error) {
+    connection.exec("ROLLBACK");
+    throw error;
+  }
 }
 
-export function findRegistration(code: string, guardianCpf: string) {
-  return getDatabase().prepare(`${registrationSelect} WHERE code = ? AND guardian_cpf = ? LIMIT 1`).get(code, guardianCpf) as RegistrationRow | undefined;
+export function findRegistrationsByCpf(guardianCpf: string) {
+  return getDatabase().prepare(`${registrationSelect} WHERE guardian_cpf = ? ORDER BY created_at DESC, id DESC`).all(guardianCpf) as RegistrationRow[];
 }
 
 export function listRegistrations() {

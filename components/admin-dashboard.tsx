@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type Row = {
-  id: number; code: string; childName: string; childBirthDate: string; guardianName: string; guardianCpf: string; guardianEmail: string; guardianPhone: string; notes: string; status: string; paymentStatus: string; createdAt: string;
+  id: number; code: string; childName: string; childBirthDate: string; guardianName: string; guardianBirthDate: string; guardianCpf: string; guardianEmail: string; guardianPhone: string; notes: string; status: string; paymentStatus: string; createdAt: string;
 };
 type Metrics = { total: number; today: number; received: number; confirmed: number };
 
@@ -36,7 +36,7 @@ function RowEditor({ row, onSaved }: { row: Row; onSaved: (row: Row) => void }) 
     <TableRow>
       <TableCell><strong className="table-code">{row.code}</strong><small>{new Date(row.createdAt).toLocaleDateString("pt-BR")}</small></TableCell>
       <TableCell><strong>{row.childName}</strong><small>Nasc. {new Date(`${row.childBirthDate}T12:00:00`).toLocaleDateString("pt-BR")}</small></TableCell>
-      <TableCell><strong>{row.guardianName}</strong><small>{row.guardianEmail}<br />{row.guardianPhone}</small></TableCell>
+      <TableCell><strong>{row.guardianName}</strong><small>{row.guardianBirthDate && <>Nasc. {new Date(`${row.guardianBirthDate}T12:00:00`).toLocaleDateString("pt-BR")}<br /></>}{row.guardianEmail}<br />{row.guardianPhone}</small></TableCell>
       <TableCell><Select value={status} onValueChange={(value) => setStatus(value ?? row.status)}><SelectTrigger aria-label={`Status de ${row.code}`}><SelectValue /></SelectTrigger><SelectContent>{statusOptions.map((option) => <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>)}</SelectContent></Select></TableCell>
       <TableCell><Select value={paymentStatus} onValueChange={(value) => setPaymentStatus(value ?? row.paymentStatus)}><SelectTrigger aria-label={`Pagamento de ${row.code}`}><SelectValue /></SelectTrigger><SelectContent>{paymentOptions.map((option) => <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>)}</SelectContent></Select></TableCell>
       <TableCell><Button size="icon-sm" variant="outline" onClick={save} disabled={saving} title="Salvar alterações">{saving ? <Loader2 className="spin" /> : <Save />}</Button>{message && <small className={message === "Salvo" ? "save-ok" : "save-error"}>{message}</small>}</TableCell>

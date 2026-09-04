@@ -148,7 +148,7 @@ export default function TermsPage() {
 
             <p>
               O Lumine coleta nome e data de nascimento da criança, além de
-              nome, CPF, e-mail e telefone do responsável. Esses dados serão
+              nome, data de nascimento, CPF, e-mail e telefone do responsável. Esses dados serão
               utilizados exclusivamente para organizar a participação,
               verificar a identidade do responsável, evitar cadastros
               indevidos, comunicar informações do Festival e cumprir

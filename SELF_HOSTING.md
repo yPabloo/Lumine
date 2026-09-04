@@ -14,15 +14,16 @@ Docker Compose e Nginx. Não depende do ChatGPT Sites nem do Cloudflare D1.
 1. Copie `.env.docker.example` para `.env`.
 2. Troque `ADMIN_PASSWORD` por uma senha longa e exclusiva.
 3. Ajuste `ADMIN_EMAIL` para o e-mail do administrador.
-4. Execute:
+4. Troque `ADMIN_SESSION_SECRET` por uma chave aleatória com pelo menos 32 caracteres. No PowerShell, você pode gerar uma com `[guid]::NewGuid().ToString() + [guid]::NewGuid().ToString()`.
+5. Mantenha `ADMIN_COOKIE_SECURE=false` no localhost. Quando o site estiver publicado com HTTPS, altere para `true`.
+6. Execute:
 
    ```bash
    docker compose up -d --build
    ```
 
-5. Acesse `http://localhost:8080`.
-6. A área administrativa fica em `/admin` e solicitará o usuário e a senha do
-   arquivo `.env`.
+7. Acesse `http://localhost:8080`.
+8. A área administrativa fica em `/admin/login`. Use o usuário e a senha do arquivo `.env`.
 
 O banco SQLite fica no volume Docker `lumine_data`. Recriar o contêiner não
 apaga as inscrições. Faça backup periódico desse volume antes de atualizações.

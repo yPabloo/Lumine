@@ -1,30 +1,13 @@
-import { getChatGPTUser, requireChatGPTUser } from "@/app/chatgpt-auth";
-
-function adminEmails() {
-  const value = process.env.ADMIN_EMAILS ?? "";
-  return value
-    .split(",")
-    .map((email) => email.trim().toLowerCase())
-    .filter(Boolean);
-}
+import { redirect } from "next/navigation";
+import { getAdminConfiguration, getAdminSessionUser } from "@/lib/admin-session";
 
 export async function getAdminUser() {
-  const user = await getChatGPTUser();
-  if (!user) return { user: null, authorized: false, configured: adminEmails().length > 0 };
-  const allowed = adminEmails();
-  return {
-    user,
-    authorized: allowed.includes(user.email.toLowerCase()),
-    configured: allowed.length > 0,
-  };
+  const user = await getAdminSessionUser();
+  return { user, authorized: Boolean(user), configured: getAdminConfiguration().configured };
 }
 
 export async function requireAdminPage() {
-  const user = await requireChatGPTUser("/admin");
-  const allowed = adminEmails();
-  return {
-    user,
-    authorized: allowed.includes(user.email.toLowerCase()),
-    configured: allowed.length > 0,
-  };
+  const auth = await getAdminUser();
+  if (!auth.authorized || !auth.user) redirect("/admin/login");
+  return { ...auth, user: auth.user };
 }

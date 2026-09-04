@@ -16,15 +16,16 @@ export function isValidCpf(value: string) {
   return calculate(9) === Number(cpf[9]) && calculate(10) === Number(cpf[10]);
 }
 
-const nonFutureDate = z.string().refine((value) => {
+const birthDate = z.string().refine((value) => {
   const date = new Date(`${value}T12:00:00Z`);
   return !Number.isNaN(date.getTime()) && date <= new Date();
 }, "Informe uma data de nascimento válida.");
 
 export const registrationSchema = z.object({
   childName: z.string().trim().min(3).max(120),
-  childBirthDate: nonFutureDate,
+  childBirthDate: birthDate,
   guardianName: z.string().trim().min(3).max(120),
+  guardianBirthDate: birthDate,
   guardianCpf: z.string().refine(isValidCpf, "CPF inválido."),
   guardianEmail: z.string().trim().email().max(180),
   guardianPhone: z.string().refine((value) => {
@@ -38,8 +39,7 @@ export const registrationSchema = z.object({
 });
 
 export const lookupSchema = z.object({
-  code: z.string().trim().toUpperCase().regex(/^FLA-[A-Z0-9]{8}$/),
-  guardianCpf: z.string().refine(isValidCpf),
+  guardianCpf: z.string().refine(isValidCpf, "CPF inválido."),
 });
 
 export const updateRegistrationSchema = z.object({

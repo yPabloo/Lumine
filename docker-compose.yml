@@ -5,7 +5,11 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_PATH: /data/lumine.db
-      ADMIN_EMAILS: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
+      ADMIN_USER: ${ADMIN_USER:?Defina ADMIN_USER no arquivo .env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Defina ADMIN_PASSWORD no arquivo .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:?Defina ADMIN_SESSION_SECRET no arquivo .env}
+      ADMIN_COOKIE_SECURE: ${ADMIN_COOKIE_SECURE:-false}
     volumes:
       - lumine_data:/data
 
@@ -17,10 +21,5 @@ services:
       - app
     ports:
       - "${HTTP_PORT:-8080}:80"
-    environment:
-      ADMIN_USER: ${ADMIN_USER:?Defina ADMIN_USER no arquivo .env}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Defina ADMIN_PASSWORD no arquivo .env}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
-
 volumes:
   lumine_data:
