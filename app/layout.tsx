@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   description:
     "Conheça o Lumine e faça a inscrição no Festival Lumine de Artes, aberto a crianças de toda a comunidade.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/lumine-star-icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/lumine-star-icon.png",
   },
 };
 

@@ -39,7 +39,6 @@ export function AdminLoginForm({ configured }: { configured: boolean }) {
         <div className={styles.icon}><LockKeyhole /></div>
         <span className="kicker">Acesso restrito</span>
         <h1>Administração do Festival</h1>
-        <p>Entre com o usuário e a senha definidos no arquivo <code>.env</code>.</p>
         {!configured && <p className="form-error" role="alert">A administração ainda não foi configurada. Preencha ADMIN_USER, ADMIN_PASSWORD, ADMIN_EMAIL e ADMIN_SESSION_SECRET.</p>}
         <form className={styles.form} onSubmit={submit}>
           <div className="field"><Label htmlFor="adminUsername">Usuário</Label><Input id="adminUsername" autoComplete="username" required value={username} onChange={(event) => setUsername(event.target.value)} /></div>

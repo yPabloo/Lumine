@@ -13,8 +13,8 @@ const questions = [
   ["Haverá taxa de inscrição?", "O valor ainda está em definição. Nenhum pagamento é cobrado pelo formulário atual; a equipe informará antecipadamente caso haja taxa."],
   ["Como faço a inscrição?", "Acesse a página de inscrição, preencha os dados da criança e do responsável legal, leia os termos e conclua. Guarde o código exibido ao final."],
   ["Posso inscrever mais de uma criança?", "Sim. Faça uma inscrição separada para cada criança. O mesmo responsável pode realizar mais de um cadastro."],
-  ["Como consulto a situação?", "Use o código FLA recebido ao final do cadastro e o CPF do responsável na página Consultar inscrição."],
-  ["Quais dados são coletados?", "Nome e nascimento da criança; nome, CPF, telefone e e-mail do responsável; além de uma observação opcional. Não pedimos endereço, religião ou gênero."],
+  ["Como consulto a situação?", "Use o CPF do responsável na página Consultar inscrição."],
+  ["Quais dados são coletados?", "Nome e nascimento da criança; nome, nascimento, CPF, telefone e e-mail do responsável; além de uma observação opcional. Não pedimos endereço, religião ou gênero."],
   ["Como altero ou cancelo uma inscrição?", `Fale com a equipe pelo WhatsApp ${lumine.phone} e informe o código de inscrição.`],
 ];
 
