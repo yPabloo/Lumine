@@ -12,15 +12,16 @@ import {
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { lumine } from "@/lib/site-data";
+import {festival} from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Termo de responsabilidade",
 };
 
 const event = {
-  date: "A definir",
-  location: lumine.address,
-  time: "A definir",
+  date: "17/10/2026",
+  location: festival.location,
+  time: "15h",
   fee: "A definir",
 };
 
@@ -52,6 +53,7 @@ const participationRules = [
   "O responsável deverá comunicar informações relevantes ao atendimento seguro pelos canais oficiais.",
   "A organização poderá ajustar ou cancelar a programação por motivos de segurança, capacidade ou força maior.",
   "Condutas que coloquem crianças, famílias ou a equipe em risco poderão resultar no encerramento da participação.",
+  "Faixa etária: crianças com idade entre 4 e 14 anos (Crianças entre 4 e 7 anos deverão ser acompanhadas nas atividades)."
 ];
 
 const imageUses = [
@@ -74,9 +76,9 @@ export default function TermsPage() {
       <main>
         <section className="page-heading page-heading--yellow">
           <div className="shell narrow-shell">
-            <span className="kicker">Festival Lumine de Artes</span>
+            <span className="kicker">Festival Lumine em Cores</span>
             <h1>Termo de responsabilidade, regras e privacidade</h1>
-            <p>Versão de 29 de agosto de 2026.</p>
+            <p>Versão de 20 de setembro de 2026.</p>
           </div>
         </section>
 
@@ -100,10 +102,12 @@ export default function TermsPage() {
             </div>
 
             <p>
-              O Festival Lumine de Artes é uma atividade infantil aberta à
-              comunidade. O cadastro registra o interesse da família e a vaga
-              somente será considerada confirmada após a comunicação oficial
-              do Lumine.
+              O Festival Lumine em Cores é uma atividade infantil aberta à
+              comunidade. O cadastro juntamente com o pagamento confirma a vaga 
+              da criança cadastrada. <b>(inscrição limitada a 25 vagas)</b><br /><br /></p>
+            <p>
+              <b>OBS:</b> Se você pagar diretamente pelo site, sua vaga estará garantida no ato da inscrição. 
+              Caso opte por pagar via WhatsApp, a vaga será confirmada somente após o envio e a validação do comprovante de pagamento.
             </p>
 
             <div className="terms-event-card">
@@ -135,7 +139,7 @@ export default function TermsPage() {
 
             <p>
               A inscrição deve ser realizada pelo pai, mãe ou responsável
-              legal, que declara que as informações fornecidas são verdadeiras
+              legal (maior de 18 anos), que declara que as informações fornecidas são verdadeiras
               e que possui autorização para representar a criança.
             </p>
           </section>
@@ -238,10 +242,10 @@ export default function TermsPage() {
             </div>
 
             <p>
-              Nenhum valor é cobrado somente pelo preenchimento deste
-              formulário. Caso seja definida uma taxa, o preço, a forma de
-              pagamento e a política de cancelamento e reembolso serão
-              apresentados antes da confirmação da vaga.
+              <b>Das Condições de Pagamento e Inscrição:</b> A garantia da vaga está estritamente condicionada à confirmação do pagamento. Caso o pagamento seja realizado diretamente pelo site, a vaga estará garantida no ato da inscrição. Optando pela modalidade de pagamento via WhatsApp, a confirmação da vaga ocorrerá somente após a validação do comprovante por nossa equipe. Ressalta-se que o valor da inscrição é individual e aplicável por criança, sendo obrigatória a realização de uma nova inscrição e o respectivo pagamento para cada participante adicional que a família deseje incluir. <br /><br />
+            </p>
+            <p>
+              <b>Da Política de Cancelamento e Reembolso:</b> As solicitações de cancelamento e a consequente devolução de valores serão calculadas a partir da data e do horário da confirmação do pagamento. O participante terá direito ao reembolso integral do valor pago caso a desistência seja formalizada em até 24 horas após o pagamento. Para solicitações realizadas no prazo de até 72 horas após a confirmação, será concedido o reembolso parcial dos valores. Após o decurso do prazo de 72 horas, não haverá direito a qualquer tipo de reembolso ou restituição financeira.
             </p>
           </section>
 

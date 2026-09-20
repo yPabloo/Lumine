@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Lumine",
   },
   description:
-    "Conheça o Lumine e faça a inscrição no Festival Lumine de Artes, aberto a crianças de toda a comunidade.",
+    "Conheça o Lumine e faça a inscrição no Festival Lumine em Cores, aberto a crianças de toda a comunidade.",
   icons: {
     icon: "/lumine-star-icon.png",
     shortcut: "/favicon.ico",

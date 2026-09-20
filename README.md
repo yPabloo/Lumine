@@ -1,4 +1,4 @@
-# Festival Lumine de Artes
+# Festival Lumine em Cores
 
 Site institucional do Lumine e sistema de inscrições do Festival Lumine de
 Artes. O projeto inclui página pública, formulário de inscrição, consulta por

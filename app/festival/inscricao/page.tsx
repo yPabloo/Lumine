@@ -13,9 +13,9 @@ export default function RegistrationPage() {
       <main className="form-page">
         <section className="page-heading page-heading--pink">
           <div className="shell narrow-shell">
-            <span className="eyebrow">Festival Lumine de Artes</span>
+            <span className="eyebrow">Festival Lumine em Cores</span>
             <h1>Inscrição da criança</h1>
-            <p>Preencha com atenção. Ao final, você receberá um código para acompanhar a situação da inscrição.</p>
+            <p>Preencha com atenção. Ao final, você poderá acompanhar a situação da inscrição pela número do CPF do responsável.</p>
             <div className="privacy-note"><LockKeyhole size={18} /><span>Coletamos apenas os dados necessários para organizar o evento e falar com o responsável.</span></div>
           </div>
         </section>

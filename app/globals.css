@@ -197,7 +197,7 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
   z-index: 100;
   top: 0;
   border-bottom: 1px solid rgb(51 73 94 / 8%);
-  background: rgb(244, 194, 194);
+  background: #00aba6;
   box-shadow: 0 8px 30px rgb(46 67 87 / 5%);
   backdrop-filter: blur(16px);
 }

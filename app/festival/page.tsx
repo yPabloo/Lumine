@@ -16,7 +16,7 @@ export default function FestivalPage() {
           <div className="shell festival-hero-grid">
             <div>
               <span className="eyebrow"><Paintbrush size={16} /> {festival.eyebrow}</span>
-              <h1>Festival Lumine<br /><em>de Artes</em></h1>
+              <h1>Festival Lumine<br /><em>em Cores</em></h1>
               <p>{festival.description}</p>
               <div className="button-row">
                 <Link className="button button--primary" href="/festival/inscricao">Fazer inscrição <ArrowRight size={18} /></Link>
@@ -56,7 +56,7 @@ export default function FestivalPage() {
 
         <section className="section section--yellow">
           <div className="shell callout">
-            <div><span className="kicker">Primeira edição</span><h2>As informações finais serão comunicadas pela equipe Lumine.</h2><p>O formulário registra o interesse da família. A vaga passa a ser confirmada após o pagamento da taxa.</p></div>
+            <div><span className="kicker">Primeira edição</span><h2>Fique de olho no instagram do Lumine ou entre em contato pelo WhatsApp para mais informações!</h2><p>A vaga passa a ser confirmada após inscrição e o pagamento da taxa.</p></div>
             <Link className="button button--primary" href="/festival/inscricao">Inscrever criança <ArrowRight size={18} /></Link>
           </div>
         </section>

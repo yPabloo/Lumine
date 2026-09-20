@@ -1,4 +1,4 @@
-# Festival Lumine de Artes — execução própria
+# Festival Lumine em Cores — execução própria
 
 Este pacote é a versão independente da demonstração. Ele usa Next.js, SQLite,
 Docker Compose e Nginx. Não depende do ChatGPT Sites nem do Cloudflare D1.
@@ -33,7 +33,7 @@ apaga as inscrições. Faça backup periódico desse volume antes de atualizaç�
 ```bash
 git init
 git add .
-git commit -m "Site Festival Lumine de Artes"
+git commit -m "Site Festival Lumine em Cores"
 git branch -M main
 git remote add origin URL_DO_SEU_REPOSITORIO
 git push -u origin main

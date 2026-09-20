@@ -12,7 +12,7 @@ export const lumine = {
 export const groups = [
   {
     title: "Maternal",
-    ages: "2 a 3 anos",
+    ages: "3 meses a 1 ano",
     description:
       "Cuidado, descobertas e estímulos para os primeiros anos com segundo e afeto.",
     color: "pink",
@@ -20,8 +20,8 @@ export const groups = [
     art: "/lumine-groups/maternalEstrela.png"
   },
   {
-    title: "Infantil I e II",
-    ages: "4 a 5 anos",
+    title: "Infantil I",
+    ages: "1 a 3 anos",
     description:
       "Brincar, explorar e aprender, desenvolvendo autonomia, criatividade e confiança.",
     color: "yellow",
@@ -29,8 +29,8 @@ export const groups = [
     art: "/lumine-groups/infantilEstrela.png"
   },
   {
-    title: "Fundamental",
-    ages: "Reforço do 1º ao 5º ano",
+    title: "Infantil II",
+    ages: "3 a 5 anos",
     description:
       "Apoio personalizado para aprender, respeitando o tempo de cada criança e desenvolver habilidades.",
     color: "blue",
@@ -65,12 +65,12 @@ export const support = [
 ];
 
 export const festival = {
-  name: "Festival Lumine de Artes",
+  name: "Festival Lumine em Cores",
   eyebrow: "Aberto a toda a comunidade",
   description:
     "Uma experiência de pintura, expressão e descobertas para crianças, não é necessário estar matriculado no Lumine.",
-  date: "Data em breve",
-  time: "Horário em breve",
-  location: "Lumine — Grageru, Aracaju/SE",
+  date: "17/10/2026",
+  time: "15h",
+  location: "Parque da Sementeira, Aracaju/SE",
   fee: "Valor em definição",
 };
