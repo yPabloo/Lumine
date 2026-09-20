@@ -5,7 +5,7 @@ export const lumine = {
     "Um espaço que respeita cada fase da infância e transforma cuidado, curiosidade e descoberta em aprendizagem com significado.",
   address: "Rua Maria Alice Oliveira, 336 — Grageru, Aracaju/SE",
   phone: "(79) 99107-7159",
-  phoneHref: "https://wa.me/5579991077159",
+  phoneHref: "https://wa.link/78u5lm",
   instagram: "https://www.instagram.com/lumine.edu.infantil/",
 };
 

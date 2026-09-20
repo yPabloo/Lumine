@@ -47,12 +47,32 @@ function formatPhone(value: string) {
   return digits.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
 }
 
+function formatDateInput(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function yearsAgo(years: number) {
+  const today = new Date();
+  const targetYear = today.getFullYear() - years;
+  const lastDayOfTargetMonth = new Date(targetYear, today.getMonth() + 1, 0).getDate();
+  const targetDay = Math.min(today.getDate(), lastDayOfTargetMonth);
+  return new Date(targetYear, today.getMonth(), targetDay);
+}
+
 export function RegistrationForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [code, setCode] = useState("");
   const [copied, setCopied] = useState(false);
+  const childMaxBirthDate = formatDateInput(yearsAgo(4));
+  const childMinDate = yearsAgo(15);
+  childMinDate.setDate(childMinDate.getDate() + 1);
+  const childMinBirthDate = formatDateInput(childMinDate);
+  const guardianMaxBirthDate = formatDateInput(yearsAgo(18));
 
   const setField = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -104,8 +124,15 @@ export function RegistrationForm() {
         <div className="form-section-heading"><span>1</span><div><h2>Dados da criança</h2><p>Cadastre uma criança por inscrição.</p></div></div>
         <div className="form-grid">
           <div className="field field--full"><Label htmlFor="childName">Nome completo da criança *</Label><Input id="childName" autoComplete="name" required value={form.childName} onChange={(e) => setField("childName", e.target.value)} /></div>
-          <div className="field"><Label htmlFor="childBirthDate">Data de nascimento *</Label><Input id="childBirthDate" type="date" required value={form.childBirthDate} onChange={(e) => setField("childBirthDate", e.target.value)} /></div>
-          <div className="field field--full"><Label htmlFor="notes">Observação para a organização <span>(opcional)</span></Label><Textarea id="notes" maxLength={500} placeholder="Use este campo para colocar informações necessárias ao atendimento no evento. Ex: alergias, necessidades especiais, etc..." value={form.notes} onChange={(e) => setField("notes", e.target.value)} /></div>
+          <div className="field">
+            <Label htmlFor="childBirthDate">Data de nascimento *</Label>
+            <Input id="childBirthDate" type="date" min={childMinBirthDate} max={childMaxBirthDate} required value={form.childBirthDate} onChange={(e) => setField("childBirthDate", e.target.value)} />            
+          </div>
+          <div className="field field--full">
+            <p className="field-hint">A criança deve ter entre 4 e 14 anos.</p>
+            <Label htmlFor="notes">Observação para a organização <span>(opcional)</span></Label>
+            <Textarea id="notes" maxLength={500} placeholder="Use este campo para colocar informações necessárias ao atendimento no evento. Ex: alergias, necessidades especiais, etc..." value={form.notes} onChange={(e) => setField("notes", e.target.value)} />
+          </div>
         </div>
       </div>
 
@@ -113,9 +140,16 @@ export function RegistrationForm() {
         <div className="form-section-heading"><span>2</span><div><h2>Responsável legal</h2><p>Esses dados serão usados para confirmação e consulta.</p></div></div>
         <div className="form-grid">
           <div className="field field--full"><Label htmlFor="guardianName">Nome completo *</Label><Input id="guardianName" autoComplete="name" required value={form.guardianName} onChange={(e) => setField("guardianName", e.target.value)} /></div>
-          <div className="field"><Label htmlFor="guardianBirthDate">Data de nascimento *</Label><Input id="guardianBirthDate" type="date" autoComplete="bday" required value={form.guardianBirthDate} onChange={(e) => setField("guardianBirthDate", e.target.value)} /></div>
+          <div className="field">
+            <Label htmlFor="guardianBirthDate">Data de nascimento *</Label>
+            <Input id="guardianBirthDate" type="date" max={guardianMaxBirthDate} autoComplete="bday" required value={form.guardianBirthDate} onChange={(e) => setField("guardianBirthDate", e.target.value)} />
+          </div>
           <div className="field"><Label htmlFor="guardianCpf">CPF *</Label><Input id="guardianCpf" inputMode="numeric" autoComplete="off" required placeholder="000.000.000-00" value={form.guardianCpf} onChange={(e) => setField("guardianCpf", formatCpf(e.target.value))} /></div>
-          <div className="field"><Label htmlFor="guardianPhone">Celular / WhatsApp *</Label><Input id="guardianPhone" type="tel" inputMode="tel" autoComplete="tel" required placeholder="(79) 99999-9999" value={form.guardianPhone} onChange={(e) => setField("guardianPhone", formatPhone(e.target.value))} /></div>
+          <div className="field">
+            <p className="field-hint">O responsável legal deve ter pelo menos 18 anos.</p>
+            <Label htmlFor="guardianPhone">Celular / WhatsApp *</Label>
+            <Input id="guardianPhone" type="tel" inputMode="tel" autoComplete="tel" required placeholder="(79) 99999-9999" value={form.guardianPhone} onChange={(e) => setField("guardianPhone", formatPhone(e.target.value))} />
+          </div>
           <div className="field field--full"><Label htmlFor="guardianEmail">E-mail *</Label><Input id="guardianEmail" type="email" autoComplete="email" required value={form.guardianEmail} onChange={(e) => setField("guardianEmail", e.target.value)} /></div>
         </div>
       </div>

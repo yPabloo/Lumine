@@ -17,6 +17,7 @@ const navigation = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const isFestivalLandingPage = pathname === "/festival";
 
   /*
    * Encontra o link mais específico da página atual.
@@ -36,7 +37,11 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="site-header">
+    <header
+      className={`site-header ${
+        isFestivalLandingPage ? "site-header--festival" : ""
+      }`}
+    >
       <div className="shell header-inner">
         <Link
           href="/"

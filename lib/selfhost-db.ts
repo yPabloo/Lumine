@@ -78,13 +78,13 @@ function getDatabase() {
   const legacyCodes = connection.prepare(`
     SELECT COUNT(*) AS value
     FROM registrations
-    WHERE code != ('FLA-' || printf('%04d', id))
+    WHERE code != ('FLC-' || printf('%04d', id))
   `).get() as { value: number };
   if (legacyCodes.value > 0) {
     connection.exec("BEGIN IMMEDIATE");
     try {
-      connection.exec("UPDATE registrations SET code = '__FLA_MIGRATION__' || id");
-      connection.exec("UPDATE registrations SET code = 'FLA-' || printf('%04d', id)");
+      connection.exec("UPDATE registrations SET code = '__FLC_MIGRATION__' || id");
+      connection.exec("UPDATE registrations SET code = 'FLC-' || printf('%04d', id)");
       connection.exec("COMMIT");
     } catch (error) {
       connection.exec("ROLLBACK");
@@ -138,7 +138,7 @@ export function createRegistration(values: {
         0
       ) + 1 AS value
     `).get() as { value: number };
-    const code = `FLA-${String(sequence.value).padStart(4, "0")}`;
+    const code = `FLC-${String(sequence.value).padStart(4, "0")}`;
 
     connection.prepare(`
       INSERT INTO registrations (
