@@ -103,8 +103,10 @@ export default function TermsPage() {
 
             <p>
               O Festival Lumine em Cores é uma atividade infantil aberta à
-              comunidade. O cadastro juntamente com o pagamento confirma a vaga 
-              da criança cadastrada. <b>(inscrição limitada a 25 vagas)</b><br /><br /></p>
+              comunidade, com limite máximo de 25 inscrições ativas. O cadastro
+              juntamente com o pagamento confirma a vaga da criança cadastrada.
+              <br /><br />
+            </p>
             <p>
               <b>OBS:</b> Se você pagar diretamente pelo site, sua vaga estará garantida no ato da inscrição. 
               Caso opte por pagar via WhatsApp, a vaga será confirmada somente após o envio e a validação do comprovante de pagamento.

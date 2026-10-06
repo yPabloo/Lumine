@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     const numericSearch = digits(search);
     const filtered = rows.filter((row) => {
       const matchesStatus = status === "all" || row.status === status;
-      const matchesSearch = !search || row.code.toLowerCase().includes(search) || row.childName.toLowerCase().includes(search) || row.guardianName.toLowerCase().includes(search) || row.guardianEmail.toLowerCase().includes(search) || (numericSearch && row.guardianCpf.includes(numericSearch));
+      const matchesSearch = !search || row.code.toLowerCase().includes(search) || row.childName.toLowerCase().includes(search) || row.guardianName.toLowerCase().includes(search) || row.guardianEmail.toLowerCase().includes(search) || row.notes.toLowerCase().includes(search) || (numericSearch && row.guardianCpf.includes(numericSearch));
       return matchesStatus && matchesSearch;
     });
     return Response.json({ registrations: filtered });

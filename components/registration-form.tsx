@@ -165,6 +165,7 @@ export function RegistrationForm() {
       <Button className="button button--primary submit-button" type="submit" disabled={loading || !form.consentTerms || !form.consentData || !form.guardianDeclaration}>
         {loading ? <><Loader2 className="spin" /> Enviando…</> : "Concluir inscrição"}
       </Button>
+      <p className="form-footnote">O Festival possui o limite de 25 inscrições. A disponibilidade da vaga é verificada novamente ao concluir o cadastro.</p>
     </form>
   );
 }

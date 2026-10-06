@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, CircleDollarSign, Clock3, MapPin, Paintbrush, Search, ShieldCheck, UsersRound } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
@@ -23,9 +24,18 @@ export default function FestivalPage() {
                 <Link className="button button--secondary" href="/festival/consultar"><Search size={18} /> Consultar</Link>
               </div>
             </div>
-            <div className="festival-canvas" aria-hidden="true">
-              <span className="brush brush--one" /><span className="brush brush--two" /><span className="brush brush--three" />
-              <div className="canvas-copy"><small>imaginar</small><strong>CRIAR</strong><small>compartilhar</small></div>
+            <div className="festival-mascot" aria-label="Lumininha segurando um pincel e uma paleta de tintas">
+              <span className="festival-mascot-shape festival-mascot-shape--blue" aria-hidden="true" />
+              <span className="festival-mascot-shape festival-mascot-shape--pink" aria-hidden="true" />
+              <span className="festival-mascot-shape festival-mascot-shape--yellow" aria-hidden="true" />
+              <Image
+                src="/lumininha-pintora.png"
+                alt="Lumininha, mascote do Lumine, com pincel e paleta de tintas"
+                width={1378}
+                height={1142}
+                sizes="(max-width: 980px) 88vw, 520px"
+                priority
+              />
             </div>
           </div>
         </section>
@@ -56,7 +66,7 @@ export default function FestivalPage() {
 
         <section className="section section--yellow">
           <div className="shell callout">
-            <div><span className="kicker">Primeira edição</span><h2>Fique de olho no instagram do Lumine ou entre em contato pelo WhatsApp para mais informações!</h2><p>A vaga passa a ser confirmada após inscrição e o pagamento da taxa.</p></div>
+            <div><span className="kicker">Primeira edição</span><h2>Fique de olho no instagram do Lumine ou entre em contato pelo WhatsApp para mais informações!</h2><p>Serão disponibilizadas até 25 inscrições. A vaga passa a ser confirmada após a inscrição e o pagamento da taxa.</p></div>
             <Link className="button button--primary" href="/festival/inscricao">Inscrever criança <ArrowRight size={18} /></Link>
           </div>
         </section>

@@ -1,4 +1,7 @@
-import { createRegistration } from "@/lib/selfhost-db";
+import {
+  createRegistration,
+  RegistrationLimitReachedError,
+} from "@/lib/selfhost-db";
 import { digits, registrationSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -25,6 +28,16 @@ export async function POST(request: Request) {
     });
     return Response.json({ code, status: "recebida" }, { status: 201 });
   } catch (error) {
+    if (error instanceof RegistrationLimitReachedError) {
+      return Response.json(
+        {
+          code: "REGISTRATION_LIMIT_REACHED",
+          error: `As ${error.limit} vagas disponíveis já foram preenchidas. Entre em contato com o Lumine para mais informações.`,
+        },
+        { status: 409 },
+      );
+    }
+
     console.error("registration_create_failed", error);
     return Response.json({ error: "Não foi possível concluir a inscrição agora. Tente novamente em instantes." }, { status: 500 });
   }

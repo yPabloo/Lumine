@@ -10,6 +10,7 @@ services:
       ADMIN_EMAIL: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
       ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:?Defina ADMIN_SESSION_SECRET no arquivo .env}
       ADMIN_COOKIE_SECURE: ${ADMIN_COOKIE_SECURE:-false}
+      REGISTRATION_LIMIT: ${REGISTRATION_LIMIT:-25}
     volumes:
       - lumine_data:/data
 

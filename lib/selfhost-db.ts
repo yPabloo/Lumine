@@ -25,6 +25,22 @@ export type RegistrationRow = {
 const databasePath = process.env.DATABASE_PATH ?? join(/* turbopackIgnore: true */ process.cwd(), "data", "lumine.db");
 let database: DatabaseSync | undefined;
 
+function getRegistrationLimit() {
+  const configuredLimit = Number(process.env.REGISTRATION_LIMIT ?? "25");
+  return Number.isInteger(configuredLimit) && configuredLimit > 0
+    ? configuredLimit
+    : 25;
+}
+
+export const REGISTRATION_LIMIT = getRegistrationLimit();
+
+export class RegistrationLimitReachedError extends Error {
+  constructor(public readonly limit: number) {
+    super(`O limite de ${limit} inscrições foi atingido.`);
+    this.name = "RegistrationLimitReachedError";
+  }
+}
+
 const schema = `
   CREATE TABLE IF NOT EXISTS registrations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -132,6 +148,16 @@ export function createRegistration(values: {
   const connection = getDatabase();
   connection.exec("BEGIN IMMEDIATE");
   try {
+    const activeRegistrations = connection.prepare(`
+      SELECT COUNT(*) AS value
+      FROM registrations
+      WHERE status != 'cancelada'
+    `).get() as { value: number };
+
+    if (activeRegistrations.value >= REGISTRATION_LIMIT) {
+      throw new RegistrationLimitReachedError(REGISTRATION_LIMIT);
+    }
+
     const sequence = connection.prepare(`
       SELECT COALESCE(
         (SELECT seq FROM sqlite_sequence WHERE name = 'registrations'),
@@ -194,8 +220,13 @@ function scalar(sql: string) {
 }
 
 export function getMetrics() {
+  const active = scalar("SELECT COUNT(*) AS value FROM registrations WHERE status != 'cancelada'");
+
   return {
     total: scalar("SELECT COUNT(*) AS value FROM registrations"),
+    active,
+    limit: REGISTRATION_LIMIT,
+    remaining: Math.max(REGISTRATION_LIMIT - active, 0),
     today: scalar("SELECT COUNT(*) AS value FROM registrations WHERE date(created_at) = date('now')"),
     received: scalar("SELECT COUNT(*) AS value FROM registrations WHERE status = 'recebida'"),
     confirmed: scalar("SELECT COUNT(*) AS value FROM registrations WHERE status = 'confirmada'"),

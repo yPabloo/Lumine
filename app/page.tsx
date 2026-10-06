@@ -14,6 +14,10 @@ import {
   StructureCarousel,
   type StructureImage,
 } from "@/components/structure-carousel";
+import {
+  TestimonialCarousel,
+  type TestimonialVideo,
+} from "@/components/testimonial-carousel";
 
 const institutionalMedia: MediaItem[] = [
   {
@@ -37,6 +41,22 @@ const structureImages: StructureImage[] = [
     src: "/lumine-structure/estrutura-03.jpeg",
     alt: "Área de aprendizagem e brincadeiras do Lumine",
   },
+];
+
+/*
+ * Para publicar um depoimento:
+ * 1. coloque o vídeo em public/lumine-testimonials;
+ * 2. opcionalmente, coloque uma imagem de capa na mesma pasta;
+ * 3. adicione um item seguindo o modelo comentado abaixo.
+ */
+const testimonialVideos: TestimonialVideo[] = [
+  // {
+  //   src: "/lumine-testimonials/depoimento-jorge.mp4",
+  //   poster: "/lumine-testimonials/capa-depoimento-jorge.jpg",
+  //   parentName: "Jorge",
+  //   relationship: "Pai de Maria Júlia",
+  //   quote: "No Lumine, nossa família encontrou acolhimento, segurança e atenção de verdade.",
+  // },
 ];
 
 export default function Home() {
@@ -204,6 +224,18 @@ export default function Home() {
                 <ul>{support.map((item) => <li key={item}>{item}</li>)}</ul>
               </article>
             </div>
+          </div>
+        </section>
+
+        <section className="section testimonials-section" id="depoimentos">
+          <div className="shell">
+            <div className="section-heading testimonials-heading">
+              <span className="kicker">Histórias de quem confia</span>
+              <h2>O Lumine contado pelas famílias.</h2>
+              <p>Experiências reais de quem encontrou acolhimento, cuidado e desenvolvimento em cada etapa da infância.</p>
+            </div>
+
+            <TestimonialCarousel items={testimonialVideos} />
           </div>
         </section>
 
