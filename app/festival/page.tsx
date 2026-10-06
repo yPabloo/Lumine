@@ -4,9 +4,46 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, CircleDollarSign, Clock3, MapPin, Paintbrush, Search, ShieldCheck, UsersRound } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import {
+  FestivalGalleryCarousel,
+  type FestivalGalleryImage,
+} from "@/components/festival-gallery-carousel";
 import { festival } from "@/lib/site-data";
 
 export const metadata: Metadata = { title: "Festival de Artes", description: festival.description };
+
+/*
+ * Para adicionar imagens ao carrossel:
+ * 1. coloque os arquivos em public/festival-gallery;
+ * 2. adicione um item para cada imagem seguindo o modelo abaixo.
+ */
+const festivalGalleryImages: FestivalGalleryImage[] = [
+   {
+     src: "/festival-gallery/FotoFestival1.jpeg",
+     alt: "Crianças participando de uma atividade de pintura",
+     caption: "Materiais e experiências pensados especialmente para as crianças.",
+   },
+   {
+     src: "/festival-gallery/FotoFestival2.jpeg",
+     alt: "Crianças participando de uma atividade de pintura",
+     caption: "A criança tem liberdade para imaginar, experimentar e criar.",
+   },
+   {
+     src: "/festival-gallery/FotoFestival3.jpeg",
+     alt: "Crianças participando de uma atividade de pintura",
+     caption: "Sorrisos brilhantes que guiam cada pincelada de alegria.",
+   },
+   {
+     src: "/festival-gallery/FotoFestival4.jpeg",
+     alt: "Crianças participando de uma atividade de pintura",
+     caption: "Momentos de afeto compartilhados através da arte e do cuidado.",
+   },
+   {
+     src: "/festival-gallery/FotoFestival5.jpeg",
+     alt: "Crianças participando de uma atividade de pintura",
+     caption: "Um encontro cheio de cores, criatividade e descobertas.",
+   },
+];
 
 export default function FestivalPage() {
   return (
@@ -61,6 +98,18 @@ export default function FestivalPage() {
               <article><UsersRound /><div><h3>Comunidade convidada</h3><p>A participação é aberta ao público; não é preciso estar matriculado no Lumine.</p></div></article>
               <article><ShieldCheck /><div><h3>Inscrição responsável</h3><p>O cadastro é feito por um responsável legal e coleta somente os dados necessários.</p></div></article>
             </div>
+          </div>
+        </section>
+
+        <section className="section festival-gallery-section" id="galeria">
+          <div className="shell">
+            <div className="section-heading festival-gallery-heading">
+              <span className="kicker">Cores que ganham vida</span>
+              <h2>Um pedacinho do que espera por você.</h2>
+              <p>Imagens inspiradoras para entrar no clima de criação, brincadeira e expressão do Festival Lumine em Cores.</p>
+            </div>
+
+            <FestivalGalleryCarousel items={festivalGalleryImages} />
           </div>
         </section>
 

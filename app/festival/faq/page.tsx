@@ -11,7 +11,7 @@ const questions = [
   ["Precisa ser aluno do Lumine para participar?", "Não. O Festival Lumine em Cores será aberto a crianças de toda a comunidade."],
   ["Quantas vagas estarão disponíveis?", "O Festival possui o limite máximo de 25 inscrições ativas. Uma inscrição cancelada libera novamente a vaga para outra criança."],
   ["A inscrição já garante a vaga?", "Depende da forma de pagamento. Se você pagar diretamente pelo site, sua vaga estará garantida no ato da inscrição. Caso opte por pagar via WhatsApp, a vaga será confirmada somente após o envio e a validação do comprovante de pagamento."],
-  ["Haverá taxa de inscrição?", "Sim, o valor ainda está em definição. O pagamento poderá ser feito pelo formulário de inscrição ou via WhatsApp."],
+  ["Haverá taxa de inscrição?", "Sim, será R$ 150 (Esse valor inclui Kit Lanche, Kit Pintura, Ambientação/Arrumação do Local, Acompanhamento da Artista, Filmaker e Fotos). O pagamento poderá ser feito pelo formulário de inscrição ou via WhatsApp."],
   ["Como faço a inscrição?", "Acesse a página de inscrição, preencha os dados da criança e do responsável legal, leia os termos e conclua. Guarde o código exibido ao final."],
   ["Posso inscrever mais de uma criança?", "Sim. Faça uma inscrição separada para cada criança. O mesmo responsável pode realizar mais de um cadastro. (O pagamento será feito por criança inscrita)."],
   ["Como consulto a situação?", "Use o CPF do responsável na página Consultar inscrição."],

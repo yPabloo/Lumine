@@ -22,7 +22,7 @@ const event = {
   date: "17/10/2026",
   location: festival.location,
   time: "15h",
-  fee: "A definir",
+  fee: "R$ 150 (Esse valor inclui Kit Lanche, Kit Pintura, Ambientação/Arrumação do Local, Acompanhamento da Artista, Filmaker e Fotos)",
 };
 
 const eventDetails = [

@@ -72,5 +72,5 @@ export const festival = {
   date: "17/10/2026",
   time: "15h",
   location: "Parque da Sementeira, Aracaju/SE",
-  fee: "Valor em definição",
+  fee: "R$ 150",
 };

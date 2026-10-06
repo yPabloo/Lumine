@@ -165,6 +165,31 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
 .festival-benefits svg { width: 28px; height: 28px; color: var(--rose-dark); }.festival-benefits h3{margin-bottom:6px;font-family:Georgia,serif;font-size:1.22rem}.festival-benefits p{margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.65}
 .callout { display: flex; align-items: center; justify-content: space-between; gap: 50px; }.callout h2{font-size:clamp(2rem,4vw,3.4rem)}.callout p{max-width:760px;color:var(--ink-soft);line-height:1.7}
 
+/* Galeria do Festival */
+.festival-gallery-section { overflow: hidden; background: linear-gradient(145deg, #fff8dc 0%, #fff4f8 48%, #eaf8fa 100%); }
+.festival-gallery-heading { max-width: 780px; margin: 0 auto 2.5rem; text-align: center; }
+.festival-gallery-heading h2 { margin-bottom: 1rem; }
+.festival-gallery-heading p { max-width: 680px; margin: 0 auto; color: var(--ink-soft); line-height: 1.75; }
+.festival-gallery-carousel { position: relative; max-width: 920px; margin-inline: auto; }
+.festival-gallery-slide { position: relative; overflow: hidden; aspect-ratio: 16 / 8.7; margin: 0; border: 10px solid white; border-radius: 34px; background: var(--blue); box-shadow: 0 24px 65px rgb(62 75 88 / 16%); }
+.festival-gallery-slide img { object-fit: cover; }
+.festival-gallery-slide figcaption { position: absolute; right: 1.25rem; bottom: 1.25rem; left: 1.25rem; padding: 1rem 1.25rem; border: 1px solid rgb(255 255 255 / 35%); border-radius: 18px; background: rgb(38 50 61 / 72%); color: white; font-size: .9rem; line-height: 1.55; backdrop-filter: blur(12px); }
+.festival-gallery-arrow { position: absolute; z-index: 3; top: 50%; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgb(255 255 255 / 70%); border-radius: 50%; background: rgb(255 255 255 / 90%); color: var(--ink); box-shadow: 0 10px 28px rgb(51 62 73 / 20%); cursor: pointer; transform: translateY(-50%); transition: transform 180ms ease, background 180ms ease; }
+.festival-gallery-arrow:hover { background: white; transform: translateY(-50%) scale(1.06); }
+.festival-gallery-arrow--previous { left: 1.4rem; }
+.festival-gallery-arrow--next { right: 1.4rem; }
+.festival-gallery-controls { display: flex; gap: .8rem; align-items: center; justify-content: center; margin-top: 1.4rem; }
+.festival-gallery-dots { display: flex; gap: .55rem; align-items: center; }
+.festival-gallery-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: rgb(53 79 92 / 24%); cursor: pointer; transition: width 180ms ease, background 180ms ease; }
+.festival-gallery-dots .festival-gallery-dot--active { width: 28px; background: var(--rose-dark); }
+.festival-gallery-pause { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--border); border-radius: 50%; background: white; color: var(--ink-soft); cursor: pointer; }
+.festival-gallery-pause svg { width: 15px; height: 15px; }
+.festival-gallery-empty { display: grid; max-width: 900px; min-height: 360px; place-items: center; align-content: center; gap: .8rem; margin-inline: auto; padding: 3rem; border: 2px dashed rgb(170 128 151 / 28%); border-radius: 34px; background: rgb(255 255 255 / 68%); text-align: center; }
+.festival-gallery-empty-icon { display: grid; width: 76px; height: 76px; place-items: center; border-radius: 26px; background: linear-gradient(135deg, var(--yellow), var(--pink)); color: var(--rose-dark); transform: rotate(-4deg); }
+.festival-gallery-empty-icon svg { width: 34px; height: 34px; }
+.festival-gallery-empty strong { font-family: Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.festival-gallery-empty p { max-width: 570px; margin: 0; color: var(--ink-soft); line-height: 1.7; }
+
 .page-heading { padding: 88px 0 78px; text-align: center; }.page-heading--pink{background:linear-gradient(135deg,#fff8db,#fee7ef)}.page-heading--blue{background:linear-gradient(135deg,#e7f7fa,#fff5db)}.page-heading--yellow{background:linear-gradient(135deg,#fff4b7,#fff7e1)}
 .page-heading .narrow-shell { display: grid; justify-items: center; }.page-heading h1{margin:22px 0 14px;font-size:clamp(3rem,6vw,5rem);line-height:1}.page-heading p{max-width:650px;margin-bottom:0;color:var(--ink-soft);font-size:1.04rem;line-height:1.7}
 .privacy-note { display: flex; align-items: center; gap: 9px; margin-top: 22px; padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.7); color: var(--ink-soft); font-size: .82rem; }
@@ -192,6 +217,7 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
   .shell{width:min(100% - 26px,1160px)}.section{padding:68px 0}.header-cta{min-height:38px;padding-inline:12px;font-size:.75rem}
   .hero-grid{padding-top:64px;padding-bottom:60px}.hero-copy h1{font-size:3.45rem}.hero-copy>p{font-size:1rem}
   .learning-cards,.event-facts,.lookup-result-grid,.form-grid{grid-template-columns:1fr}.learning-card:last-child{grid-column:auto}.festival-preview-card{width:calc(100% - 26px);padding:38px 25px;border-radius:28px}.festival-preview-card h2{font-size:3.2rem}.footer-grid{grid-template-columns:1fr;gap:35px}.footer-grid>div:first-child{grid-column:auto}.footer-bottom{display:grid;gap:10px}.festival-hero-grid{padding-top:60px}.festival-hero h1{font-size:4.1rem}.festival-mascot{min-height:350px}.festival-mascot::before{right:6%;width:88%;}.event-facts article{border-right:0!important;border-bottom:1px solid var(--border)}.event-facts article:last-child{border-bottom:0}.callout{display:grid}.page-heading{padding:65px 0 58px}.form-section{padding:22px}.field--full{grid-column:auto}.lookup-form{grid-template-columns:1fr}.lookup-form .button{width:100%}.metric-grid{grid-template-columns:1fr}.admin-page{padding:22px 12px}.admin-header{display:grid}.admin-header h1{font-size:2.4rem}.admin-toolbar [data-slot="select-trigger"]{width:100%}.admin-toolbar>a,.admin-toolbar>button{flex:1}.admin-table-card{overflow-x:auto}.admin-table-card table{min-width:1240px}.registration-code{font-size:1.25rem;padding:16px}.button-row .button{width:100%}
+  .festival-gallery-slide{aspect-ratio:4/5;border-width:7px;border-radius:26px}.festival-gallery-arrow{width:42px;height:42px}.festival-gallery-arrow--previous{left:.8rem}.festival-gallery-arrow--next{right:.8rem}.festival-gallery-slide figcaption{right:.75rem;bottom:.75rem;left:.75rem}.festival-gallery-empty{min-height:320px;padding:2rem 1.25rem}
 }
 
 /* Header e navegação */
@@ -214,7 +240,7 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
   position: relative;
   z-index: 102;
   display: flex;
-  min-height: 88px;
+  min-height: 10px;
   gap: 2rem;
   align-items: center;
   justify-content: space-between;
@@ -228,7 +254,7 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
 
 .header-logo-image {
   display: block;
-  width: clamp(180px, 18vw, 235px);
+  width: clamp(120px, 12vw, 235px);
   height: auto;
 }
 
@@ -1177,7 +1203,7 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.035e
 .testimonial-carousel {
   display: grid;
   overflow: hidden;
-  max-width: 980px;
+  max-width: 700px;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
   margin-inline: auto;
   border: 8px solid rgb(255 255 255 / 80%);

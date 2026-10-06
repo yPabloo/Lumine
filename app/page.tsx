@@ -50,13 +50,13 @@ const structureImages: StructureImage[] = [
  * 3. adicione um item seguindo o modelo comentado abaixo.
  */
 const testimonialVideos: TestimonialVideo[] = [
-  // {
-  //   src: "/lumine-testimonials/depoimento-jorge.mp4",
-  //   poster: "/lumine-testimonials/capa-depoimento-jorge.jpg",
-  //   parentName: "Jorge",
-  //   relationship: "Pai de Maria Júlia",
-  //   quote: "No Lumine, nossa família encontrou acolhimento, segurança e atenção de verdade.",
-  // },
+  {
+    src: "/lumine-testimonials/depoimento-jorge.mp4",
+    poster: "/lumine-testimonials/capa-depoimento-jorge.jpg",
+    parentName: "Jorge",
+    relationship: "Pai de Maria Júlia",
+    quote: "No Lumine, nossa família encontrou acolhimento, segurança e atenção de verdade.",
+  },
 ];
 
 export default function Home() {
